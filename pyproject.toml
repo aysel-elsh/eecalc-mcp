@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eecalc-mcp"
+version = "0.1.0"
+description = "MCP server that gives Claude, Cursor and other AI assistants exact electronics calculations (IPC-2221 trace width, E-series, dividers, LED resistors, filters)."
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Aysel Elshenawy" }]
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=2.0",
+    # switch to "eecalc>=0.1" once eecalc is on PyPI
+    "eecalc @ git+https://github.com/aysel-elsh/eecalc",
+]
+keywords = ["mcp", "mcp-server", "model-context-protocol", "electronics", "pcb", "claude", "electrical-engineering"]
+
+[project.urls]
+Homepage = "https://github.com/aysel-elsh/eecalc-mcp"
+
+[project.scripts]
+eecalc-mcp = "eecalc_mcp.server:main"
+
+[project.optional-dependencies]
+test = ["pytest", "anyio"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
